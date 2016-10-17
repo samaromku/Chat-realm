@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Chat</string>
+    <string name="login">Введите логин</string>
+    <string name="enter_password">Введите пароль(8 символов)</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="reg_button">Зарегистрироваться</string>
+    <string name="hello_text1">Логин</string>
+    <string name="hello_text2">Регистрация</string>
+    <string name="not_registered">Если у вас нет аккаунта вы можете зарегистрироваться</string>
+    <string name="is_registered">Если у вас есть аккаунт вы можете войти</string>
+    <string name="toast_text_login_correct">Авторизация успешна, но ты не можешь войти, такого логина не существует</string>
+    <string name="login_empty">Вы не заполнили поле логин!</string>
+    <string name="password_empty">Вы не заполнили поле пароль!</string>
+
+</resources>
