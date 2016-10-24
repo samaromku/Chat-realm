@@ -1,5 +1,6 @@
 package ru.intefor.chat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     private Button mLogin;
     private Button mRegistration;
@@ -51,7 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         else {
-            Toast.makeText(getApplicationContext(), R.string.toast_text_login_correct, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            //Toast.makeText(getApplicationContext(), R.string.toast_text_login_correct, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -59,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String log = intent.getStringExtra("login");
         String pas = intent.getStringExtra("password");
-        System.out.println(log + " " + pas);
         if(log!=null&& pas!=null){
             mEnterLogin.setText(log);
             mEnterPassword.setText(pas);

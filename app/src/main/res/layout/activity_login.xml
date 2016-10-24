@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="ru.intefor.chat.LoginActivity">
+    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!--<TextView
+        android:id="@+id/enter_login_hover"
+        >
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hello_text1"
-            android:textSize="50sp"
-            android:gravity="center"
-            android:textColor="@color/colorButtonText"/>
-            -->
+            android:id="@+id/enter_login"
+            android:hint="@string/login_enter"
+            android:padding="10dp"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:layout_width="match_parent"
+    <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/enter_login"
-        android:hint="@string/login"
-        android:background="@color/colorInputText"
-        android:padding="10dp"/>
+        android:layout_below="@+id/enter_login_hover"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_password"
-        android:background="@color/colorInputText"
-        android:id="@+id/enter_password"
-        android:inputType="textPassword"
-        android:padding="10dp"/>
-    </LinearLayout>
+        android:id="@+id/enter_password_hover">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_password"
+            android:id="@+id/enter_password"
+            android:inputType="textPassword"
+            android:padding="10dp" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/login_button"
@@ -45,20 +38,8 @@
         android:layout_height="wrap_content"
         android:text="@string/login_button"
         android:background="@color/colorButtonText"
-        android:textColor="@android:color/white"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="bottom">
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/not_registered"
-        android:layout_gravity="center"/>
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/enter_password_hover"/>
 
     <Button
         android:id="@+id/reg_button"
@@ -66,6 +47,7 @@
         android:layout_height="wrap_content"
         android:text="@string/reg_button"
         android:background="@color/colorButtonText"
-        android:textColor="@android:color/white"/>
-    </LinearLayout>
-</LinearLayout>
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

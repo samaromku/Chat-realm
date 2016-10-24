@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <ImageView
+        android:id="@+id/image_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/pirs"
+        android:contentDescription="@string/login"/>
+
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:layout_below="@+id/image_picture"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/status"
+        android:layout_below="@id/login"
+        android:textSize="18sp"
+        android:padding="8dp"
+        android:gravity="center"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contacts"
+        android:layout_below="@id/status"
+        android:background="@color/colorButtonText"
+        android:textColor="@android:color/white"
+        android:id="@+id/contacts"
+        android:layout_marginTop="8dp"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/chats"
+        android:layout_below="@id/contacts"
+        android:background="@color/colorButtonText"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="8dp"
+        android:id="@+id/chats"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exit"
+        android:background="@color/colorButtonText"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/exit"/>
+</RelativeLayout>
