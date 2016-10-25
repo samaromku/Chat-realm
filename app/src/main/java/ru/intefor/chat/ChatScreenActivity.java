@@ -40,6 +40,8 @@ public class ChatScreenActivity extends Activity{
             public void onClick(View v) {
                 messages.add(new Message("me", DateFormatter.getDate(), editMessage.getText().toString()));
                 adapter.notifyDataSetChanged();
+                editMessage.setText("");
+                messageList.smoothScrollToPosition(adapter.getItemCount());
             }
         });
 
@@ -47,6 +49,7 @@ public class ChatScreenActivity extends Activity{
         messageList.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MessagesAdapter(messages, clickListener);
         messageList.setAdapter(adapter);
+
     }
 
     private void fillMessages(){
