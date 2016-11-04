@@ -1,4 +1,4 @@
-package ru.intefor.chat;
+package ru.intefor.chat.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
+
+import ru.intefor.chat.OnListItemClickListener;
+import ru.intefor.chat.R;
+import ru.intefor.chat.adapters.ChatsAdapter;
+import ru.intefor.chat.entities.Chat;
 
 public class ChatListActivity extends Activity {
     private ArrayList<Chat> chats;

@@ -1,4 +1,4 @@
-package ru.intefor.chat;
+package ru.intefor.chat.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import ru.intefor.chat.DateFormatter;
+import ru.intefor.chat.OnListItemClickListener;
+import ru.intefor.chat.R;
+import ru.intefor.chat.entities.Chat;
 
 public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> {
     private ArrayList<Chat> chats;

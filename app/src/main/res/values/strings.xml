@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chat</string>
+    <string name="app_name">Чат</string>
     <string name="login_enter">Введите логин</string>
     <string name="enter_password">Введите пароль(8 символов)</string>
     <string name="confirm_password">Подтвердите пароль</string>
@@ -19,5 +19,7 @@
     <string name="chats">Список чатов</string>
     <string name="enter_text">Введите сообщение</string>
     <string name="send">Отправить</string>
+    <string name="create_chat">Написать пользователю</string>
+    <string name="profile">Мой профиль</string>
 
 </resources>

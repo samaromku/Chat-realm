@@ -1,8 +1,11 @@
-package ru.intefor.chat;
+package ru.intefor.chat.entities;
 
 public class Chat {
+    private String id;
     private String title;
+    private String participant;
     private String lastMessage;
+    private long created;
     private long updated;
 
     public String getTitle() {

@@ -1,4 +1,4 @@
-package ru.intefor.chat;
+package ru.intefor.chat.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,8 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.HashMap;
-import java.util.Map;
+import ru.intefor.chat.R;
 
 public class RegActivity extends Activity{
     private Button mLogin;

@@ -1,7 +1,6 @@
-package ru.intefor.chat;
+package ru.intefor.chat.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,13 +10,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import ru.intefor.chat.DateFormatter;
+import ru.intefor.chat.OnListItemClickListener;
+import ru.intefor.chat.R;
+import ru.intefor.chat.adapters.MessagesAdapter;
+import ru.intefor.chat.entities.Message;
+import ru.intefor.chat.storage.MessageDataBase;
 
 public class ChatScreenActivity extends Activity{
-    private ArrayList<Message> messages;
+    private List<Message> messages;
     private RecyclerView messageList;
     private MessagesAdapter adapter;
     private Button sendButton;
     private EditText editMessage;
+    private MessageDataBase messageDB;
 
 
 
@@ -32,33 +42,31 @@ public class ChatScreenActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_screen);
-        fillMessages();
+        messageDB = new MessageDataBase();
+        messages = messageDB.getAll();
+
+
+
         sendButton = (Button) findViewById(R.id.send_message);
         editMessage = (EditText) findViewById(R.id.edit_message);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                messages.add(new Message("me", DateFormatter.getDate(), editMessage.getText().toString()));
+//                if(editMessage.getText().toString().startsWith("@sender@")){
+//                    String[] str = editMessage.getText().toString().split("@");
+//                    messageDB.copyOrUpdate(new Message(str[0], DateFormatter.getDate(), editMessage.getText().toString()));
+//                }
+                messageDB.copyOrUpdate(new Message("me", DateFormatter.getDate(), editMessage.getText().toString()));
                 adapter.notifyDataSetChanged();
                 editMessage.setText("");
                 messageList.smoothScrollToPosition(adapter.getItemCount());
+                messageDB.copyOrUpdate(messages);
             }
         });
-
         messageList = (RecyclerView) findViewById(R.id.message_list);
         messageList.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MessagesAdapter(messages, clickListener);
         messageList.setAdapter(adapter);
-
-    }
-
-    private void fillMessages(){
-        messages = new ArrayList<>();
-        messages.add(new Message("me", 123, "whoat???"));
-        messages.add(new Message("me", 123, "whoatsdf???"));
-        messages.add(new Message("me", 123, "whoatgfhf???"));
-        messages.add(new Message("me", 123, "whoatgh???"));
-        messages.add(new Message("me", 123, "whoatjhkjh???"));
-        messages.add(new Message("me", 123, "whoatfyhf???"));
+        messageList.smoothScrollToPosition(adapter.getItemCount());
     }
 }

@@ -1,0 +1,80 @@
+package ru.intefor.chat.fragments;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import ru.intefor.chat.OnListItemClickListener;
+import ru.intefor.chat.R;
+import ru.intefor.chat.adapters.ContactsAdapter;
+import ru.intefor.chat.entities.User;
+import ru.intefor.chat.storage.UserDatabase;
+
+public class UserListFragment extends Fragment{
+    private RecyclerView recyclerView;
+    private ContactsAdapter adapter;
+    private UserDatabase userDB= new UserDatabase();
+    private List<User> users;
+
+    private OnListItemClickListener clickListener = new OnListItemClickListener() {
+        @Override
+        public void onClick(View v, int position) {
+            Toast.makeText(v.getContext(), "Нажали на номер " + position, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.contacts_list, container, false);
+
+
+        recyclerView = (RecyclerView) v.findViewById(R.id.contacts_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
+        users = new ArrayList<>();
+        createFakeUsers();
+        performUsers();
+
+        System.out.println(userDB.getAll());
+        adapter = new ContactsAdapter(users, clickListener);
+        recyclerView.setAdapter(adapter);
+        return v;
+    }
+
+    private void createFakeUsers() {
+        ArrayList<User> newUsers = new ArrayList<>();
+
+        newUsers.add(new User("15", "Вячеслав"));
+        newUsers.add(new User("10", "Николай"));
+        newUsers.add(new User("1234", "Александр"));
+        newUsers.add(new User("54", "Святогор"));
+        newUsers.add(new User("75", "Иван"));
+
+
+        userDB.copyOrUpdate(newUsers);
+    }
+
+    private void performUsers() {
+        users = userDB.getAll();
+        userDB.addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm element) {
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
+}
