@@ -53,8 +53,9 @@ public class Message extends RealmObject{
 
     public Message(){}
 
-    public Message(String sender, long created, String body) {
+    public Message(String sender, String chatId, long created, String body) {
         this.sender = sender;
+        this.chatId = chatId;
         this.created = created;
         this.body = body;
     }

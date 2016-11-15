@@ -6,42 +6,40 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmConfiguration;
 import io.realm.Sort;
-import ru.intefor.chat.entities.Message;
+import ru.intefor.chat.entities.Chat;
 
-public class MessageDataBase {
+public class ChatDataBase {
     private Realm realm;
 
-
-
-    public MessageDataBase(){
+    public ChatDataBase() {
         RealmConfiguration configuration = new RealmConfiguration.Builder()
-                .name("message_db")
+                .name("chat_db")
                 .build();
         realm = Realm.getInstance(configuration);
     }
 
-    public void copyOrUpdate(Message message){
+    public void copyOrUpdate(Chat chat) {
         realm.beginTransaction();
-        realm.copyToRealmOrUpdate(message);
+        realm.copyToRealmOrUpdate(chat);
         realm.commitTransaction();
     }
 
-    public void copyOrUpdate(List<Message> messages){
+    public void copyOrUpdate(List<Chat> chats) {
         realm.beginTransaction();
-        realm.copyToRealmOrUpdate(messages);
+        realm.copyToRealmOrUpdate(chats);
         realm.commitTransaction();
     }
 
-    public List<Message> getAll(){
-        return realm.where(Message.class).findAllSorted("created", Sort.ASCENDING);
+    public List<Chat> getAllByParticipant(String participant){
+        return realm.where(Chat.class).equalTo("participant", participant).findAll();
     }
 
-    public List<Message> getAllByChatId(String chatId){
-        return realm.where(Message.class).equalTo("chatId", chatId).findAllSorted("created", Sort.ASCENDING);
+    public List<Chat> getAll() {
+        return realm.where(Chat.class).findAllSorted("updated", Sort.DESCENDING);
     }
 
-    public void close(){
-        if(!realm.isClosed()){
+    public void close() {
+        if (!realm.isClosed()) {
             realm.close();
         }
     }

@@ -1,5 +1,6 @@
 package ru.intefor.chat.entities;
 
+import java.util.UUID;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -13,7 +14,7 @@ public class User extends RealmObject{
     public User(){}
 
     public User(String id, String name) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.name = name;
     }
 

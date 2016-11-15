@@ -1,14 +1,16 @@
 package ru.intefor.chat.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import ru.intefor.chat.OnListItemClickListener;
 import ru.intefor.chat.R;
+import ru.intefor.chat.activities.ChatScreenActivity;
+import ru.intefor.chat.activities.ProfileActivity;
 import ru.intefor.chat.adapters.ContactsAdapter;
 import ru.intefor.chat.entities.User;
 import ru.intefor.chat.storage.UserDatabase;
@@ -30,7 +34,8 @@ public class UserListFragment extends Fragment{
     private OnListItemClickListener clickListener = new OnListItemClickListener() {
         @Override
         public void onClick(View v, int position) {
-            Toast.makeText(v.getContext(), "Нажали на номер " + position, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(), "Нажали на номер " + position, Toast.LENGTH_SHORT).show();
+            openOptionMenu(v, position);
         }
     };
 
@@ -76,5 +81,30 @@ public class UserListFragment extends Fragment{
                 }
             }
         });
+    }
+
+    public void openOptionMenu(final View v, final int position){
+        PopupMenu popup = new PopupMenu(v.getContext(), v);
+        popup.getMenuInflater().inflate(R.menu.user_option_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()){
+                    case R.id.action_message:
+                        intent = new Intent(v.getContext(), ChatScreenActivity.class);
+                        intent.putExtra("userName", users.get(position).getName());
+                        startActivity(intent);
+                        return true;
+                    case R.id.action_profile:
+                        intent = new Intent(v.getContext(), ProfileActivity.class);
+                        intent.putExtra("userName", users.get(position).getName());
+                        startActivity(intent);
+                        return true;
+                }
+                return true;
+            }
+        });
+        popup.show();
     }
 }

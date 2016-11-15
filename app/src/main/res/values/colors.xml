@@ -6,4 +6,5 @@
     <color name="colorInputText">#BBDEFB</color>
     <color name="colorButtonText">#1E88E5</color>
     <color name="colorDarkButton">#1A237E</color>
+    <color name="notSelectedTab">#C5CAE9</color>
 </resources>

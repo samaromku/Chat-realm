@@ -12,50 +12,54 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import ru.intefor.chat.OnListItemClickListener;
 import ru.intefor.chat.R;
+import ru.intefor.chat.activities.ChatListActivity;
 import ru.intefor.chat.activities.ChatScreenActivity;
 import ru.intefor.chat.adapters.ChatsAdapter;
 import ru.intefor.chat.entities.Chat;
+import ru.intefor.chat.storage.ChatDataBase;
 
 public class ChatListFragment extends Fragment{
 
-    private ArrayList<Chat> chats;
+    private List<Chat> chats;
     private RecyclerView recyclerView;
     private ChatsAdapter adapter;
+    ChatDataBase chatDB = new ChatDataBase();
     private OnListItemClickListener clickListener = new OnListItemClickListener() {
         @Override
         public void onClick(View v, int position) {
-            //Toast.makeText(ChatListActivity.this, "Нажали на номер " + position, Toast.LENGTH_SHORT).show();
-            if(position==1){
                 Intent intent = new Intent(v.getContext(), ChatScreenActivity.class);
+                intent.putExtra("chatId", chats.get(position).getId());
+                intent.putExtra("userName", chats.get(position).getParticipant());
                 startActivity(intent);
-            }
         }
     };
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.chats_list, container, false);
-
-        recyclerView = (RecyclerView) v.findViewById(R.id.chats_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
-
         createArray();
 
+        View v = inflater.inflate(R.layout.chats_list, container, false);
+        recyclerView = (RecyclerView) v.findViewById(R.id.chats_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
         adapter = new ChatsAdapter(chats, clickListener);
         recyclerView.setAdapter(adapter);
-
         return v;
     }
 
     private void createArray(){
-        chats = new ArrayList<>();
-        chats.add(new Chat("Покемоны", "Кто убил кролика роджера?", 1477314702373L));
-        chats.add(new Chat("Работа", "Почему у меня такая маленькая зарплата((", 1477314702373L));
-        chats.add(new Chat("Вопросы", "и?", 1477314833021L));
-        chats.add(new Chat("Собрание", "в 15-00", 1477314846987L));
-        chats.add(new Chat("Ыра", "это имя чтоли?", 1477314860760L));
+        chats = chatDB.getAll();
+        chatDB.addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm element) {
+                chats = chatDB.getAll();
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

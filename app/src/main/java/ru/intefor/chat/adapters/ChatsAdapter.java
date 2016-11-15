@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ru.intefor.chat.DateFormatter;
 import ru.intefor.chat.OnListItemClickListener;
@@ -14,10 +15,10 @@ import ru.intefor.chat.R;
 import ru.intefor.chat.entities.Chat;
 
 public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> {
-    private ArrayList<Chat> chats;
+    private List<Chat> chats;
     private OnListItemClickListener clickListener;
 
-    public ChatsAdapter(ArrayList<Chat> chats, OnListItemClickListener clickListener) {
+    public ChatsAdapter(List<Chat> chats, OnListItemClickListener clickListener) {
         this.chats = chats;
         this.clickListener = clickListener;
     }

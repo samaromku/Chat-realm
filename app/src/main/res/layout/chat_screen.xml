@@ -2,39 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:id="@+id/toolbar"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:id="@+id/message_list"
-        >
+        android:layout_margin="8dp"/>
 
-    </android.support.v7.widget.RecyclerView>
+
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <EditText
-        android:layout_marginTop="8dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_text"
         android:background="@color/colorInputText"
-        android:padding="8dp"
+        android:padding="16dp"
         android:id="@+id/edit_message"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+
         />
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:layout_marginTop="8dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/send"
         android:id="@+id/send_message"
         android:background="@color/colorButtonText"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:layout_margin="8dp"/>
 
 </LinearLayout>

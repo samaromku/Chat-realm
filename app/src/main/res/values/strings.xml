@@ -19,7 +19,13 @@
     <string name="chats">Список чатов</string>
     <string name="enter_text">Введите сообщение</string>
     <string name="send">Отправить</string>
-    <string name="create_chat">Написать пользователю</string>
+    <string name="create_chat">Нписать сообщение</string>
     <string name="profile">Мой профиль</string>
+    <string name="description">Статус: под колпаком</string>
+    <string name="birthday">Дата рождения: 01 октября 1990</string>
+    <string name="city">Город: Санкт-Петербург</string>
+    <string name="see_profile">Посмотреть профиль</string>
+    <string name="enter_id">Введите id чата</string>
+    <string name="enter_title">Введите тему чата</string>
 
 </resources>

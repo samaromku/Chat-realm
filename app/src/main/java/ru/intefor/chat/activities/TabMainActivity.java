@@ -2,6 +2,7 @@ package ru.intefor.chat.activities;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -25,26 +26,8 @@ public class TabMainActivity extends AppCompatActivity{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
        getSupportActionBar().setTitle(R.string.app_name);
-//        Button getUserList = (Button) findViewById(R.id.action_user);
-//        Button getChatList = (Button) findViewById(R.id.action_message);
-//
-//
-//        getUserList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(TabMainActivity.this, ContactsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        getChatList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(TabMainActivity.this, ChatListActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         TabLayout tablayout = (TabLayout) findViewById(R.id.tab_layout);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
